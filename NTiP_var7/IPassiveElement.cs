@@ -8,7 +8,9 @@ namespace NTiP_var7
 {
     public interface IPassiveElement
     {
-        //Рассчет комплексного сопротивления
+        /// <summary>
+        /// Рассчет комплексного сопротивления
+        /// </summary>
         double ComplexImpedances();
     }
 }
