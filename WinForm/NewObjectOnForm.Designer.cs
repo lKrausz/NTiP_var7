@@ -66,6 +66,7 @@
             this.SecondTextView.Size = new System.Drawing.Size(121, 20);
             this.SecondTextView.TabIndex = 2;
             this.SecondTextView.Click += new System.EventHandler(this.FirstTextView_Click);
+            this.SecondTextView.Leave += new System.EventHandler(this.FirstTextView_Leave);
             // 
             // ThirdTextView
             // 
@@ -74,6 +75,7 @@
             this.ThirdTextView.Size = new System.Drawing.Size(121, 20);
             this.ThirdTextView.TabIndex = 3;
             this.ThirdTextView.Click += new System.EventHandler(this.FirstTextView_Click);
+            this.ThirdTextView.Leave += new System.EventHandler(this.FirstTextView_Leave);
             // 
             // button1
             // 

@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NTiP_var7;
 
@@ -23,11 +17,6 @@ namespace WinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //elements.Add(new Capacitor() {C = 11, J = 8, W = 4.2});
-            //elements.Add(new Capacitor() { C = 11, J = 88, W = 4.2 });
-            // elements.Add(new Inductance() { L = 15.6, J = 2, W = 3.9 });
-            // elements.Add(new Resistor() { R = 4.7 });
-            //dataGridView1.Rows.Add();
             NewObjectOnForm NewForm = new NewObjectOnForm(this);
             NewForm.Show();
         }
