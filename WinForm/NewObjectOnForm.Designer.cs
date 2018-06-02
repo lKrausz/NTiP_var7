@@ -44,42 +44,42 @@
             "Inductance",
             "Resistor",
             "Capacitor"});
-            this.comboBox1.Location = new System.Drawing.Point(35, 12);
+            this.comboBox1.Location = new System.Drawing.Point(12, 12);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(156, 21);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
             // 
             // FirstTextView
             // 
-            this.FirstTextView.Location = new System.Drawing.Point(35, 54);
+            this.FirstTextView.Location = new System.Drawing.Point(12, 39);
             this.FirstTextView.Name = "FirstTextView";
-            this.FirstTextView.Size = new System.Drawing.Size(121, 20);
+            this.FirstTextView.Size = new System.Drawing.Size(156, 20);
             this.FirstTextView.TabIndex = 1;
             this.FirstTextView.Click += new System.EventHandler(this.FirstTextView_Click);
             this.FirstTextView.Leave += new System.EventHandler(this.FirstTextView_Leave);
             // 
             // SecondTextView
             // 
-            this.SecondTextView.Location = new System.Drawing.Point(35, 89);
+            this.SecondTextView.Location = new System.Drawing.Point(12, 65);
             this.SecondTextView.Name = "SecondTextView";
-            this.SecondTextView.Size = new System.Drawing.Size(121, 20);
+            this.SecondTextView.Size = new System.Drawing.Size(156, 20);
             this.SecondTextView.TabIndex = 2;
             this.SecondTextView.Click += new System.EventHandler(this.FirstTextView_Click);
             this.SecondTextView.Leave += new System.EventHandler(this.FirstTextView_Leave);
             // 
             // ThirdTextView
             // 
-            this.ThirdTextView.Location = new System.Drawing.Point(35, 125);
+            this.ThirdTextView.Location = new System.Drawing.Point(12, 91);
             this.ThirdTextView.Name = "ThirdTextView";
-            this.ThirdTextView.Size = new System.Drawing.Size(121, 20);
+            this.ThirdTextView.Size = new System.Drawing.Size(156, 20);
             this.ThirdTextView.TabIndex = 3;
             this.ThirdTextView.Click += new System.EventHandler(this.FirstTextView_Click);
             this.ThirdTextView.Leave += new System.EventHandler(this.FirstTextView_Leave);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 176);
+            this.button1.Location = new System.Drawing.Point(93, 117);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -89,7 +89,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(101, 176);
+            this.button2.Location = new System.Drawing.Point(12, 117);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -101,13 +101,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(188, 217);
+            this.ClientSize = new System.Drawing.Size(178, 150);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ThirdTextView);
             this.Controls.Add(this.SecondTextView);
             this.Controls.Add(this.FirstTextView);
             this.Controls.Add(this.comboBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "NewObjectOnForm";
             this.Text = "NewObjectOnForm";
             this.ResumeLayout(false);

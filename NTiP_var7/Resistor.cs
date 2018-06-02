@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
+
 
 namespace NTiP_var7
 {
+    /// <summary>
+    /// Элемент цепи: Резистор
+    /// </summary>
     public class Resistor : IPassiveElement
     {
         private double _R;
@@ -33,7 +33,8 @@ namespace NTiP_var7
         /// <summary>
         /// Рассчет комплексного сопротивления
         /// </summary>
-        public double ComplexImpedances()
+        /// <remarks> Входные параметры не используются при рассчете комплексного сопротивления резистора.</remarks>
+        public Complex ComplexImpedances(Complex j, double w) 
         {
             return _R;
         }

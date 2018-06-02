@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
+
 
 namespace NTiP_var7
 {
@@ -11,6 +8,6 @@ namespace NTiP_var7
         /// <summary>
         /// Рассчет комплексного сопротивления
         /// </summary>
-        double ComplexImpedances();
+        Complex ComplexImpedances(Complex j, double w);
     }
 }

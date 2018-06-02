@@ -62,9 +62,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(132, 362);
+            this.button1.Location = new System.Drawing.Point(141, 352);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 49);
+            this.button1.Size = new System.Drawing.Size(155, 54);
             this.button1.TabIndex = 1;
             this.button1.Text = "Add element";
             this.button1.UseVisualStyleBackColor = true;

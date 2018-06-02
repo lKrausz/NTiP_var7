@@ -1,36 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
+
 
 namespace NTiP_var7
 {
+    /// <summary>
+    /// Элемент цепи: Конденсатор
+    /// </summary>
     public class Capacitor : IPassiveElement
     {
-        private double _j;
-        private double _w;
         private double _C;
-
-        public double J
-        {
-            get => _j;
-            set
-            {
-                if (value < 0) throw new ValueLessThenNullException("j can't be less then 0.");
-                _j = value;
-            }
-        }
-
-        public double W
-        {
-            get => _w;
-            set
-            {
-                if (value < 0) throw new ValueLessThenNullException("w can't be less then 0.");
-                _w = value;
-            }
-        }
 
         public double C
         {
@@ -45,18 +23,9 @@ namespace NTiP_var7
         /// <summary>
         /// Конструктор класса
         /// </summary>
-        public Capacitor(double jValue, double wValue, double CValue)
+        public Capacitor(double CValue)
         {
-            try
-            {
-                J = jValue;
-                W = wValue;
-                C = CValue;
-            }
-            catch (ValueLessThenNullException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            C = CValue;
         }
 
         public Capacitor() { }
@@ -64,10 +33,9 @@ namespace NTiP_var7
         /// <summary>
         /// Рассчет комплексного сопротивления
         /// </summary>
-        public double ComplexImpedances()
+        public Complex ComplexImpedances(Complex j, double w)
         {
-            return -_j / (_w * _C);
+            return -j / (w * _C);
         }
-
     }
 }

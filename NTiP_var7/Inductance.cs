@@ -1,36 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
+
 
 namespace NTiP_var7
 {
+    /// <summary>
+    /// Элемент цепи: Индуктивность
+    /// </summary>
     public class Inductance : IPassiveElement
     {
-        private double _j;
-        private double _w;
         private double _L;
-
-        public double J
-        {
-            get => _j;
-            set
-            {
-                if (value < 0) throw new ValueLessThenNullException("j can't be less then 0.");
-                _j = value;
-            }
-        }
-
-        public double W
-        {
-            get => _w;
-            set
-            {
-                if (value < 0) throw new ValueLessThenNullException("w can't be less then 0.");
-                _w = value;
-            }
-        }
 
         public double L
         {
@@ -44,10 +22,8 @@ namespace NTiP_var7
         /// <summary>
         /// Конструктор класса
         /// </summary>
-        public Inductance(double jValue, double wValue, double LValue)
+        public Inductance(double LValue)
         {
-            J = jValue;
-            W = wValue;
             L = LValue;
         }
 
@@ -56,9 +32,9 @@ namespace NTiP_var7
         /// <summary>
         /// Рассчет комплексного сопротивления
         /// </summary>
-        public double ComplexImpedances()
+        public Complex ComplexImpedances(Complex j, double w)
         {
-            return _j * _w * _L;
+            return j * w * _L;
         }
     }
 }

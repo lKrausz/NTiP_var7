@@ -10,9 +10,7 @@ namespace WinForm
         {
             InitializeComponent();
         }
-
-        private Form1 Parent;
-
+        
         public enum ElementsType
         {
             Inductance,
@@ -20,10 +18,21 @@ namespace WinForm
             Capacitor
         }
 
-        public NewObjectOnForm(Form1 ParentForm)
+        public IPassiveElement Element
         {
-            InitializeComponent();
-            Parent = ParentForm;
+            get
+            {
+                return new Capacitor(1,1,1);
+            }
+            set
+            {
+                if (value is Resistor resistor)
+                {
+                    comboBox1.SelectedIndex = 0;
+                    FirstTextView.Text = resistor.R.ToString();
+                }
+                //throw new NotImplementedException();
+            }
         }
 
         private int currentType;
@@ -83,7 +92,8 @@ namespace WinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -95,13 +105,13 @@ namespace WinForm
                     double j = (Convert.ToDouble(FirstTextView.Text));
                     double w = (Convert.ToDouble(SecondTextView.Text));
                     double L = (Convert.ToDouble(ThirdTextView.Text));
-                    Parent.CreateDataForInductance(new Inductance(j, w, L));
+                    //Parent.CreateDataForInductance(new Inductance(j, w, L));
                     break;
                 }
                 case (int)ElementsType.Resistor:
                 {
                     double R = (Convert.ToDouble(FirstTextView.Text));
-                    Parent.CreateDataForResistor(new Resistor(R));
+                    //Parent.CreateDataForResistor(new Resistor(R));
                     break;
                 }
                 case (int)ElementsType.Capacitor:
@@ -109,11 +119,12 @@ namespace WinForm
                     double j = (Convert.ToDouble(FirstTextView.Text));
                     double w = (Convert.ToDouble(SecondTextView.Text));
                     double C = (Convert.ToDouble(ThirdTextView.Text));
-                    Parent.CreateDataForCapacitor(new Capacitor(j, w, C));
+                    //Parent.CreateDataForCapacitor(new Capacitor(j, w, C));
                     break;
                 }
             }
-            this.Hide();
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
