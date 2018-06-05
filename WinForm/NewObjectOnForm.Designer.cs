@@ -31,9 +31,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.FirstTextView = new System.Windows.Forms.TextBox();
             this.SecondTextView = new System.Windows.Forms.TextBox();
-            this.ThirdTextView = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Cancel = new System.Windows.Forms.Button();
+            this.OK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -68,48 +67,39 @@
             this.SecondTextView.Click += new System.EventHandler(this.FirstTextView_Click);
             this.SecondTextView.Leave += new System.EventHandler(this.FirstTextView_Leave);
             // 
-            // ThirdTextView
+            // Cancel
             // 
-            this.ThirdTextView.Location = new System.Drawing.Point(12, 91);
-            this.ThirdTextView.Name = "ThirdTextView";
-            this.ThirdTextView.Size = new System.Drawing.Size(156, 20);
-            this.ThirdTextView.TabIndex = 3;
-            this.ThirdTextView.Click += new System.EventHandler(this.FirstTextView_Click);
-            this.ThirdTextView.Leave += new System.EventHandler(this.FirstTextView_Leave);
+            this.Cancel.Location = new System.Drawing.Point(91, 91);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(75, 23);
+            this.Cancel.TabIndex = 4;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
-            // button1
+            // OK
             // 
-            this.button1.Location = new System.Drawing.Point(93, 117);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(12, 117);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "OK";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.OK.Location = new System.Drawing.Point(10, 91);
+            this.OK.Name = "OK";
+            this.OK.Size = new System.Drawing.Size(75, 23);
+            this.OK.TabIndex = 5;
+            this.OK.Text = "OK";
+            this.OK.UseVisualStyleBackColor = true;
+            this.OK.Click += new System.EventHandler(this.OK_Click);
             // 
             // NewObjectOnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(178, 150);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.ThirdTextView);
+            this.ClientSize = new System.Drawing.Size(178, 124);
+            this.Controls.Add(this.OK);
+            this.Controls.Add(this.Cancel);
             this.Controls.Add(this.SecondTextView);
             this.Controls.Add(this.FirstTextView);
             this.Controls.Add(this.comboBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "NewObjectOnForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NewObjectOnForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -121,8 +111,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox FirstTextView;
         private System.Windows.Forms.TextBox SecondTextView;
-        private System.Windows.Forms.TextBox ThirdTextView;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.Button OK;
     }
 }

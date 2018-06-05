@@ -1,5 +1,11 @@
 ﻿using System.Numerics;
 
+public enum ElementsType
+{
+    Inductance,
+    Resistor,
+    Capacitor
+}
 
 namespace NTiP_var7
 {
@@ -11,3 +17,4 @@ namespace NTiP_var7
         Complex ComplexImpedances(Complex j, double w);
     }
 }
+
