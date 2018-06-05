@@ -8,6 +8,7 @@ namespace NTiP_var7
     /// </summary>
     public class Capacitor : IPassiveElement
     {
+        //TODO: Все замечания аналогичны катушке индуктивности
         private double _C;
 
         public double C
@@ -28,6 +29,7 @@ namespace NTiP_var7
             C = CValue;
         }
 
+        //TODO: зачем этот конструктор
         public Capacitor() { }
 
         /// <summary>

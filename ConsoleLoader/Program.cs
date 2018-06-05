@@ -3,7 +3,8 @@ using System.Numerics;
 
 using NTiP_var7;
 
-    namespace ConsoleLoader
+//TODO: Этот проект уже можно удалить, в последующих лабораторных он уже не понадобится
+namespace ConsoleLoader
     {
         class Program
         {
@@ -22,7 +23,8 @@ using NTiP_var7;
                     Resistor resistor = new Resistor(R);
                     Console.WriteLine("Resistor complex impedances: " + resistor.ComplexImpedances(j, w) + "\n");
                 }
-                catch (ValueLessThenNullException e)
+            //TODO: УРА! Теперь ты правильно кидаешь и ловишь исключения :) Молодец, разобралась!
+            catch (ValueLessThenNullException e)
                 {
                     Console.WriteLine(e.Message + "\n");
                 }

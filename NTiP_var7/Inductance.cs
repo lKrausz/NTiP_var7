@@ -3,11 +3,14 @@
 
 namespace NTiP_var7
 {
+    //TODO: Индуктивность - это физическая величина. А КАТУШКА ИНДУКТИВНОСТИ (Inductor) - это элемент
     /// <summary>
     /// Элемент цепи: Индуктивность
     /// </summary>
     public class Inductance : IPassiveElement
     {
+        //TODO: комментарий
+        //TODO: неправильное имя поля
         private double _L;
 
         public double L
@@ -19,6 +22,8 @@ namespace NTiP_var7
                 _L = value;
             }
         }
+
+        //TODO: неправильное именование входного аргумента
         /// <summary>
         /// Конструктор класса
         /// </summary>
@@ -27,6 +32,7 @@ namespace NTiP_var7
             L = LValue;
         }
 
+        //TODO: Зачем этот конструктор?
         public Inductance() { }
 
         /// <summary>

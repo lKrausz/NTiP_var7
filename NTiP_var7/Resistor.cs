@@ -8,6 +8,7 @@ namespace NTiP_var7
     /// </summary>
     public class Resistor : IPassiveElement
     {
+        //TODO: все замечания аналогичны катушке индуктивности
         private double _R;
 
         public double R
@@ -28,6 +29,7 @@ namespace NTiP_var7
             R = RValue;
         }
 
+        //TODO: зачем этот конструктор
         public Resistor() { }
 
         /// <summary>
