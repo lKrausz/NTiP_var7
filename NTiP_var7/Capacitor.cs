@@ -6,38 +6,49 @@ namespace NTiP_var7
     /// <summary>
     /// Элемент цепи: Конденсатор
     /// </summary>
-    public class Capacitor : IPassiveElement
+    public class Capacitor : IElements
     {
         //TODO: Все замечания аналогичны катушке индуктивности
-        private double _C;
+        //done
+        private double _c;
 
         public double C
         {
-            get => _C;
+            get => _c;
             set
             {
-                if (value < 0) throw new ValueLessThenNullException("C can't be less then 0.");
-                _C = value;
+                if (value < 0) throw new NegativeValueException("C can't be less then 0.");
+                _c = value;
             }
         }
 
         /// <summary>
         /// Конструктор класса
         /// </summary>
-        public Capacitor(double CValue)
+        public Capacitor(double cValue)
         {
-            C = CValue;
+            C = cValue;
         }
-
-        //TODO: зачем этот конструктор
-        public Capacitor() { }
 
         /// <summary>
         /// Рассчет комплексного сопротивления
         /// </summary>
-        public Complex ComplexImpedances(Complex j, double w)
+        public Complex GetImpedance(double w)
         {
-            return -j / (w * _C);
+            return -Complex.ImaginaryOne / (w * _c);
+        }
+
+        /// <summary>
+        /// Получение закрытых полей дочерних классов для заполнения gridview, столбца параметров
+        /// </summary>
+        public double GetParametr()
+        {
+            return _c;
+        }
+
+        public override string ToString()
+        {
+            return "Capacitor";
         }
     }
 }

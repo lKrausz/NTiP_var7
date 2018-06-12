@@ -11,36 +11,47 @@ namespace WinForm
             InitializeComponent();
         }
 
-        public IPassiveElement Element
+        private int _currentType;
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            _currentType = ((ComboBox)sender).SelectedIndex;
+            Setup();
+        }
+
+        public IElements Element
         {
             get
             {
-                switch (currentType)
+                switch (_currentType)
                 {
-                    case (int)ElementsType.Inductance:
+                    case (int)ElementsType.Inductor:
                     {
                         double L = (Convert.ToDouble(FirstTextView.Text));
-                        return new Inductance(L);
+                        IElements element = new Inductor(L);
+                        return element;
                     }
                     case (int)ElementsType.Resistor:
                     {
                         double R = (Convert.ToDouble(FirstTextView.Text));
-                        return new Resistor(R);
-                    }
+                        IElements element = new Resistor(R);
+                        return element;
+                        }
                     case (int)ElementsType.Capacitor:
                     {
                         double C = (Convert.ToDouble(FirstTextView.Text));
-                        return new Capacitor(C);
-                    }
+                        IElements element = new Capacitor(C);
+                        return element;
+                        }
                 }
-                return Element; //new Capacitor(1);
+                return null;
             }
             set
             {
-                if (value is Inductance inductance)
+                if (value is Inductor inductor)
                 {
                     comboBox1.SelectedIndex = 0;
-                    FirstTextView.Text = inductance.L.ToString();
+                    FirstTextView.Text = inductor.L.ToString();
                 }
                 else if (value is Resistor resistor)
                 {
@@ -56,41 +67,32 @@ namespace WinForm
             }
         }
 
-        private int currentType;
-
-        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-             currentType = ((ComboBox)sender).SelectedIndex;
-             Setup();
-        }
-
         private void Setup()
         {
-            switch (currentType)
+            switch (_currentType)
             {
-                case (int)ElementsType.Inductance:
+                case (int)ElementsType.Inductor:
                 {
                     ConfigureTextBoxText(FirstTextView, "Введите L");
-                    ConfigureTextBoxText(SecondTextView, "Введите w");
-                    SecondTextView.Visible = true;
                     break;
                 }
                 case (int)ElementsType.Resistor:
                 {
                     ConfigureTextBoxText(FirstTextView, "Введите R");
-                    SecondTextView.Visible = false;
                     break;
                 }
                 case (int)ElementsType.Capacitor:
                 {
                     ConfigureTextBoxText(FirstTextView, "Введите С");
-                    ConfigureTextBoxText(SecondTextView, "Введите w");
-                    SecondTextView.Visible = true;
                     break;
                 }
             }
         }
-
+        
+        private void ConfigureTextBoxText(TextBox textbox, string title)
+        {
+            if (textbox.Text == "") textbox.Text = title;
+        }
 
         private void FirstTextView_Click(object sender, EventArgs e)
         {
@@ -101,12 +103,7 @@ namespace WinForm
         {
             if (((TextBox)sender).Text == "" ) Setup();
         }
-
-        private void ConfigureTextBoxText(TextBox textbox, string title)
-        {
-            if (textbox.Text == "") textbox.Text = title;
-        }
-
+        
         private void Cancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -115,29 +112,7 @@ namespace WinForm
 
         private void OK_Click(object sender, EventArgs e)
         {
-            switch (currentType)
-            {
-                case (int) ElementsType.Inductance:
-                {
-                    double L = (Convert.ToDouble(FirstTextView.Text));
-                    double w = (Convert.ToDouble(SecondTextView.Text));
-                    //Parent.CreateDataForInductance(new Inductance(j, w, L));
-                    break;
-                }
-                case (int)ElementsType.Resistor:
-                {
-                    double R = (Convert.ToDouble(FirstTextView.Text));
-                    //Parent.CreateDataForResistor(new Resistor(R));
-                    break;
-                }
-                case (int)ElementsType.Capacitor:
-                {
-                    double C = (Convert.ToDouble(FirstTextView.Text));
-                    double w = (Convert.ToDouble(SecondTextView.Text));
-                    //Parent.CreateDataForCapacitor(new Capacitor(j, w, C));
-                    break;
-                }
-            }
+            
             DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -30,7 +30,6 @@
         {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.FirstTextView = new System.Windows.Forms.TextBox();
-            this.SecondTextView = new System.Windows.Forms.TextBox();
             this.Cancel = new System.Windows.Forms.Button();
             this.OK = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -40,9 +39,9 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Inductance",
-            "Resistor",
-            "Capacitor"});
+            "Катушка индуктивности",
+            "Резистор",
+            "Конденсатор"});
             this.comboBox1.Location = new System.Drawing.Point(12, 12);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(156, 21);
@@ -58,18 +57,9 @@
             this.FirstTextView.Click += new System.EventHandler(this.FirstTextView_Click);
             this.FirstTextView.Leave += new System.EventHandler(this.FirstTextView_Leave);
             // 
-            // SecondTextView
-            // 
-            this.SecondTextView.Location = new System.Drawing.Point(12, 65);
-            this.SecondTextView.Name = "SecondTextView";
-            this.SecondTextView.Size = new System.Drawing.Size(156, 20);
-            this.SecondTextView.TabIndex = 2;
-            this.SecondTextView.Click += new System.EventHandler(this.FirstTextView_Click);
-            this.SecondTextView.Leave += new System.EventHandler(this.FirstTextView_Leave);
-            // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(91, 91);
+            this.Cancel.Location = new System.Drawing.Point(93, 65);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
             this.Cancel.TabIndex = 4;
@@ -79,7 +69,7 @@
             // 
             // OK
             // 
-            this.OK.Location = new System.Drawing.Point(10, 91);
+            this.OK.Location = new System.Drawing.Point(12, 65);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(75, 23);
             this.OK.TabIndex = 5;
@@ -91,15 +81,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(178, 124);
+            this.ClientSize = new System.Drawing.Size(178, 99);
             this.Controls.Add(this.OK);
             this.Controls.Add(this.Cancel);
-            this.Controls.Add(this.SecondTextView);
             this.Controls.Add(this.FirstTextView);
             this.Controls.Add(this.comboBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "NewObjectOnForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "NewObjectOnForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -110,7 +99,6 @@
 
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox FirstTextView;
-        private System.Windows.Forms.TextBox SecondTextView;
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.Button OK;
     }
