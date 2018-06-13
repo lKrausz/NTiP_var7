@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B480332C-CEFE-4556-A631-0E43E70B617F}</ProjectGuid>
+    <ProjectGuid>{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NTiP_var7</RootNamespace>
-    <AssemblyName>NTiP_var7</AssemblyName>
+    <RootNamespace>UnitTests</RootNamespace>
+    <AssemblyName>UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -39,7 +39,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,17 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Capacitor.cs" />
-    <Compile Include="CheckCorrectValue.cs" />
-    <Compile Include="ElementsType.cs" />
-    <Compile Include="Inductor.cs" />
-    <Compile Include="IElements.cs" />
+    <Compile Include="Model\CapacitorTest.cs" />
+    <Compile Include="Model\IndustorTest.cs" />
+    <Compile Include="Model\ResistorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resistor.cs" />
-    <Compile Include="NegativeValueException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NTiP_var7\NTiP_var7.csproj">
+      <Project>{B480332C-CEFE-4556-A631-0E43E70B617F}</Project>
+      <Name>NTiP_var7</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

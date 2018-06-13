@@ -1,4 +1,6 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
+using System.Runtime.Serialization;
 
 
 namespace NTiP_var7
@@ -6,18 +8,22 @@ namespace NTiP_var7
     /// <summary>
     /// Элемент цепи: Конденсатор
     /// </summary>
+    [Serializable]
     public class Capacitor : IElements
     {
-        //TODO: Все замечания аналогичны катушке индуктивности
-        //done
+        [DataMember]
         private double _c;
 
-        public double C
+        /// <summary>
+        /// Свойство для работы с параметрами
+        /// </summary>
+        public double Parametrs
         {
             get => _c;
             set
             {
-                if (value < 0) throw new NegativeValueException("C can't be less then 0.");
+                CheckCorrectValue.IsDouble(value);
+                CheckCorrectValue.IsLessThenNull(value);
                 _c = value;
             }
         }
@@ -27,7 +33,7 @@ namespace NTiP_var7
         /// </summary>
         public Capacitor(double cValue)
         {
-            C = cValue;
+            Parametrs = cValue;
         }
 
         /// <summary>
@@ -36,14 +42,6 @@ namespace NTiP_var7
         public Complex GetImpedance(double w)
         {
             return -Complex.ImaginaryOne / (w * _c);
-        }
-
-        /// <summary>
-        /// Получение закрытых полей дочерних классов для заполнения gridview, столбца параметров
-        /// </summary>
-        public double GetParametr()
-        {
-            return _c;
         }
 
         public override string ToString()

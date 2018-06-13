@@ -1,19 +1,8 @@
-﻿using System.Numerics;
-
-//TODO: плохое название для проекта. Переименовать в Elements
-//done
-
-//TODO: enum лежит ВНЕ пространства имен библиотеки!
-//TODO: КАЖДЫЙ тип данных в своём файле!
-//???
-public enum ElementsType
-{
-    Inductor,
-    Resistor,
-    Capacitor
-}
+﻿using System;
+using System.Numerics;
 
 namespace NTiP_var7
+
 {
     public interface IElements
     {
@@ -26,10 +15,8 @@ namespace NTiP_var7
         /// Рассчет комплексного сопротивления
         /// </summary>
         Complex GetImpedance(double w);
-        /// <summary>
-        /// Получение закрытых полей дочерних классов для заполнения gridview, столбца параметров
-        /// </summary>
-        double GetParametr();
+
+        double Parametrs { get; }
     }
 }
 

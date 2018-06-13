@@ -1,4 +1,6 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
+using System.Runtime.Serialization;
 
 
 namespace NTiP_var7
@@ -8,31 +10,32 @@ namespace NTiP_var7
     /// <summary>
     /// Элемент цепи: Катушка индуктивности
     /// </summary>
+    [Serializable]
     public class Inductor : IElements
     {
-        //TODO: комментарий
-        //TODO: неправильное имя поля
-        //done
+        [DataMember]
         private double _l;
 
-        public double L
+        /// <summary>
+        /// Свойство для работы с параметрами
+        /// </summary>
+        public double Parametrs
         {
             get => _l;
             set
             {
-                if (value < 0) throw new NegativeValueException("L can't be less then 0.");
+                CheckCorrectValue.IsDouble(value);
+                CheckCorrectValue.IsLessThenNull(value);
                 _l = value;
             }
         }
 
-        //TODO: неправильное именование входного аргумента
-        //done?
         /// <summary>
         /// Конструктор класса
         /// </summary>
         public Inductor(double lValue)
         {
-            L = lValue;
+            Parametrs = lValue;
         }
 
         /// <summary>
@@ -41,14 +44,6 @@ namespace NTiP_var7
         public Complex GetImpedance( double w)
         {
             return Complex.ImaginaryOne * w * _l;
-        }
-
-        /// <summary>
-        /// Получение закрытых полей дочерних классов для заполнения gridview, столбца параметров
-        /// </summary>
-        public double GetParametr()
-        {
-            return _l;
         }
 
         public override string ToString()
