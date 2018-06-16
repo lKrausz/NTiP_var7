@@ -5,8 +5,6 @@ using System.Runtime.Serialization;
 
 namespace NTiP_var7
 {
-    //TODO: Индуктивность - это физическая величина. А КАТУШКА ИНДУКТИВНОСТИ (Inductor) - это элемент
-    //done
     /// <summary>
     /// Элемент цепи: Катушка индуктивности
     /// </summary>

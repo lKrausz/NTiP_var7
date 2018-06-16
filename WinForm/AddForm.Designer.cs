@@ -1,6 +1,6 @@
 ﻿namespace WinForm
 {
-    partial class NewObjectOnForm
+    partial class AddForm
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,7 @@
             this.Cancel.TabIndex = 4;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
-            this.Cancel.Click += new System.EventHandler(this.Cancel_Click_1);
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // OK
             // 
@@ -60,7 +60,7 @@
             this.addFormControl1.Size = new System.Drawing.Size(190, 66);
             this.addFormControl1.TabIndex = 6;
             // 
-            // NewObjectOnForm
+            // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -69,9 +69,9 @@
             this.Controls.Add(this.OK);
             this.Controls.Add(this.Cancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "NewObjectOnForm";
+            this.Name = "AddForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "NewObjectOnForm";
+            this.Text = "Add/Modify window";
             this.ResumeLayout(false);
 
         }

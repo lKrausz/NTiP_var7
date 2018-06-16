@@ -16,10 +16,24 @@ namespace WinForm
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Частота
+        /// </summary>
         private uint _w;
+
+        /// <summary>
+        /// Список пассивных элементов
+        /// </summary>
         private List<IElements> _elements = new List<IElements>();
+
+        /// <summary>
+        ///  Связующий _elements и gridview список
+        /// </summary>
         private BindingSource _bindingSource = new BindingSource();
-        
+
+        /// <summary>
+        /// Конструктор формы
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -27,20 +41,17 @@ namespace WinForm
             _bindingSource.DataSource = _elements;
             dataGridView1.DataSource = _bindingSource;
             dataGridView1.MultiSelect = true;
-            FirstTextView.Visible = false;
-            SecondTextView.Visible = false;
-            label3.Visible = false;
-            label4.Visible = false;
-            comboBox2.Visible = false;
-            label5.Text = "";
             dataGridView1.Columns.Add("ResistanceColumn", "Сопротивление");
-            addFormControl1.IsReadOnly(true);
+            addFormControl1.IsEnable(true);
         }
 
-
+        /// <summary>
+        ///  Кнопка добавления нового элемента
+        /// </summary>
         private void Add_Click(object sender, EventArgs e)
         {
-            NewObjectOnForm NewForm = new NewObjectOnForm();
+            addFormControl1.isModify = true;
+            AddForm NewForm = new AddForm();
             if (NewForm.ShowDialog() == DialogResult.OK)
             {
                 var element = NewForm.NewElement;
@@ -49,6 +60,9 @@ namespace WinForm
             }
         }
 
+        /// <summary>
+        /// Кнопка для вычисления комплексного сопротивления для всех элементов в таблице
+        /// </summary>
         private void CalculateButton_Click(object sender, EventArgs e)
         {
             _w = Convert.ToUInt32(WValueTextBox.Text);
@@ -60,6 +74,9 @@ namespace WinForm
             }
         }
 
+        /// <summary>
+        /// Кнопка удаления элементов
+        /// </summary>
         private void Remove_button_Click(object sender, EventArgs e)
         {
             for (int n = _elements.Count - 1; n >= 0; n--)
@@ -71,53 +88,18 @@ namespace WinForm
             }
         }
 
+        /// <summary>
+        /// Хранение текущего критерия поиска
+        /// </summary>
         private int _currentType;
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             _currentType = ((ComboBox)sender).SelectedIndex;
-            Setup();
-        }
-
-        private void Setup()
-        {
-            switch (_currentType)
-            {
-                case 0:
-                {
-                    FirstTextView.Visible = false;
-                    SecondTextView.Visible = false;
-                    label3.Visible = false;
-                    label4.Visible = false;
-                    comboBox2.Visible = true;
-                    label5.Text = "Выберите тип элемента";
-                    break;
-                }
-                case 1:
-                {
-                    FirstTextView.Visible = true;
-                    SecondTextView.Visible = true;
-                    label3.Visible = true;
-                    label4.Visible = true;
-                    comboBox2.Visible = false;
-                    label5.Text = "Укажите диапазон значений";
-                    break;
-                }
-                case 2:
-                {
-                    FirstTextView.Visible = true;
-                    SecondTextView.Visible = true;
-                    label3.Visible = true;
-                    label4.Visible = true;
-                    comboBox2.Visible = false;
-                    label5.Text = "Укажите диапазон значений";
-                    break;
-                }
-            }
         }
 
         /// <summary>
-        /// Выбранный тип элемента.
+        /// Выбранный в критериях поиска тип элемента
         /// </summary>
         private ElementsType elementType;
 
@@ -131,19 +113,20 @@ namespace WinForm
                 elementType = ElementsType.Capacitor;
         }
 
+        /// <summary>
+        /// Список для элементов, которых подходят по критериям поиска
+        /// </summary>
         private List<IElements> _searchResult = new List<IElements>();
+
+        /// <summary>
+        /// Кнопка поиска
+        /// </summary>
         private void SearchButton_Click(object sender, EventArgs e)
         {
             switch (_currentType)
             {
                 case 0:
                 {
-                    //dataGridView1.ClearSelection();
-                    //for (int n = _elements.Count - 1; n > 0; n--)
-                    //{
-                    //    dataGridView1.Rows[n].Visible = false;
-                    //}
-
                     foreach (IElements element in _elements.ToArray())
                     {
                         if (element.ToString() == elementType.ToString())
@@ -163,23 +146,12 @@ namespace WinForm
                     }
                     break;
                 }
-
-                case 1:
-                {
-
-                    MessageBox.Show("Функция будет добавлена никогда.", "Error");
-
-                        break;
-                }
-
-                case 2:
-                {
-                    MessageBox.Show("Функция будет добавлена никогда.", "Error");
-                    break;
-                }
             }
         }
-        
+
+        /// <summary>
+        /// Кнопка для очистки критериев поиска и возвращения к полному списку элементов
+        /// </summary>
         private void ReturnButton_Click(object sender, EventArgs e)
         {
             _bindingSource.DataSource = null;
@@ -193,6 +165,10 @@ namespace WinForm
                 n++;
             }
         }
+
+        /// <summary>
+        /// Кнопка для создания рандомных данных
+        /// </summary>
         private void RandomButton_Click(object sender, EventArgs e)
         {
             var random = new Random();
@@ -220,37 +196,43 @@ namespace WinForm
             }
         }
 
-        private void закрытьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        public string _filePath = "data.cres";
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            addFormControl1.IsReadOnly(_elements[dataGridView1.CurrentCell.RowIndex]); /// meh
+            addFormControl1.IsEnable(true);
+            addFormControl1.Element = _elements[dataGridView1.CurrentCell.RowIndex];
         }
 
-        private void сохранитьКакToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            addFormControl1.IsEnable(true);
+            int index = dataGridView1.CurrentCell.RowIndex;
+            addFormControl1.isModify = true;
+            AddForm NewForm = new AddForm(_elements[index]);
+            if (NewForm.ShowDialog() == DialogResult.OK)
+            {
+                var element = NewForm.NewElement;
+                _bindingSource.Remove(_elements[index]);
+                _bindingSource.Insert(index, element);
+                dataGridView1.Rows[index].Cells[0].Value = element.ToString();
+            }     
+        }
+
+        private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveFileDialog1.ShowDialog();
         }
 
         private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
         {
-            SerializeBinary(saveFileDialog1.FileName, ref _elements);
+            Serializer.SerializeBinary(saveFileDialog1.FileName, ref _elements);
         }
 
-        public static void SerializeBinary<T>(string fileName, ref T container)
-        {
-            var formatter = new BinaryFormatter();
-            var serializeFileStream = new FileStream(fileName, FileMode.OpenOrCreate);
-            formatter.Serialize(serializeFileStream, container);
-            serializeFileStream.Close();
-        }
-
-        private void открытьToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
         }
@@ -258,18 +240,9 @@ namespace WinForm
         private void openFileDialog_FileOk(object sender, CancelEventArgs e)
         {
            
-            DeserializeBinary(openFileDialog1.FileName, ref _elements);
+            Serializer.DeserializeBinary(openFileDialog1.FileName, ref _elements);
             _bindingSource.DataSource = null;
             _bindingSource.DataSource = _elements;
-        }
-
-        public static void DeserializeBinary<T>(string fileName, ref T container)
-        {
-            var formatter = new BinaryFormatter();
-            var deserializeFile = new FileStream(fileName, FileMode.OpenOrCreate);
-            if (deserializeFile.Length > 0)
-            container = (T)formatter.Deserialize(deserializeFile);
-            deserializeFile.Close();
         }
     }
 }

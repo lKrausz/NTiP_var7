@@ -29,17 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.addFormControl1 = new WinForm.AddFormControl();
             this.RandomButton = new System.Windows.Forms.Button();
             this.Search = new System.Windows.Forms.GroupBox();
             this.ReturnButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.SecondTextView = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.FirstTextView = new System.Windows.Forms.TextBox();
             this.SearchButton = new System.Windows.Forms.Button();
             this.Remove_button = new System.Windows.Forms.Button();
             this.wLabel = new System.Windows.Forms.Label();
@@ -54,7 +51,6 @@
             this.закрытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.addFormControl1 = new WinForm.AddFormControl();
             this.groupBox1.SuspendLayout();
             this.Search.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -79,6 +75,13 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // addFormControl1
+            // 
+            this.addFormControl1.Location = new System.Drawing.Point(387, 202);
+            this.addFormControl1.Name = "addFormControl1";
+            this.addFormControl1.Size = new System.Drawing.Size(190, 66);
+            this.addFormControl1.TabIndex = 11;
+            // 
             // RandomButton
             // 
             this.RandomButton.Location = new System.Drawing.Point(390, 312);
@@ -93,14 +96,10 @@
             // 
             this.Search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Search.Controls.Add(this.ReturnButton);
-            this.Search.Controls.Add(this.label4);
-            this.Search.Controls.Add(this.label3);
-            this.Search.Controls.Add(this.SecondTextView);
             this.Search.Controls.Add(this.comboBox2);
             this.Search.Controls.Add(this.comboBox1);
             this.Search.Controls.Add(this.label5);
             this.Search.Controls.Add(this.label6);
-            this.Search.Controls.Add(this.FirstTextView);
             this.Search.Controls.Add(this.SearchButton);
             this.Search.Location = new System.Drawing.Point(374, 19);
             this.Search.Name = "Search";
@@ -117,31 +116,6 @@
             this.ReturnButton.Text = "Сбросить";
             this.ReturnButton.UseVisualStyleBackColor = true;
             this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(116, 97);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(19, 13);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "до";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 97);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(18, 13);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "от";
-            // 
-            // SecondTextView
-            // 
-            this.SecondTextView.Location = new System.Drawing.Point(141, 94);
-            this.SecondTextView.Name = "SecondTextView";
-            this.SecondTextView.Size = new System.Drawing.Size(53, 20);
-            this.SecondTextView.TabIndex = 15;
             // 
             // comboBox2
             // 
@@ -160,9 +134,7 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Тип элемента",
-            "Диапазон значений параметров",
-            "Диапазон значений сопротивления"});
+            "Тип элемента"});
             this.comboBox1.Location = new System.Drawing.Point(6, 28);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(197, 21);
@@ -172,10 +144,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 61);
+            this.label5.Location = new System.Drawing.Point(13, 66);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 13);
+            this.label5.Size = new System.Drawing.Size(132, 13);
             this.label5.TabIndex = 12;
+            this.label5.Text = "Выберите тип элемента:";
             // 
             // label6
             // 
@@ -185,13 +158,6 @@
             this.label6.Size = new System.Drawing.Size(149, 13);
             this.label6.TabIndex = 11;
             this.label6.Text = "Выберите критерий поиска:";
-            // 
-            // FirstTextView
-            // 
-            this.FirstTextView.Location = new System.Drawing.Point(47, 94);
-            this.FirstTextView.Name = "FirstTextView";
-            this.FirstTextView.Size = new System.Drawing.Size(53, 20);
-            this.FirstTextView.TabIndex = 10;
             // 
             // SearchButton
             // 
@@ -267,6 +233,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(362, 320);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // menuStrip1
             // 
@@ -293,21 +260,21 @@
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
             this.открытьToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
-            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click_1);
+            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // сохранитьКакToolStripMenuItem
             // 
             this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
             this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
-            this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.сохранитьКакToolStripMenuItem_Click_1);
+            this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripMenuItem_Click);
             // 
             // закрытьToolStripMenuItem
             // 
             this.закрытьToolStripMenuItem.Name = "закрытьToolStripMenuItem";
             this.закрытьToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.закрытьToolStripMenuItem.Text = "Закрыть";
-            this.закрытьToolStripMenuItem.Click += new System.EventHandler(this.закрытьToolStripMenuItem_Click);
+            this.закрытьToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
             // 
             // saveFileDialog1
             // 
@@ -319,13 +286,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
-            // 
-            // addFormControl1
-            // 
-            this.addFormControl1.Location = new System.Drawing.Point(387, 202);
-            this.addFormControl1.Name = "addFormControl1";
-            this.addFormControl1.Size = new System.Drawing.Size(190, 66);
-            this.addFormControl1.TabIndex = 11;
             // 
             // MainForm
             // 
@@ -362,14 +322,10 @@
         private System.Windows.Forms.Button Remove_button;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.GroupBox Search;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox SecondTextView;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox FirstTextView;
         private System.Windows.Forms.Button ReturnButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;

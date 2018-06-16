@@ -30,7 +30,6 @@
         {
             this.FirstTextView = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.SecondTextView = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // FirstTextView
@@ -56,18 +55,10 @@
             this.comboBox1.TabIndex = 2;
             this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
             // 
-            // SecondTextView
-            // 
-            this.SecondTextView.Location = new System.Drawing.Point(3, 9);
-            this.SecondTextView.Name = "SecondTextView";
-            this.SecondTextView.Size = new System.Drawing.Size(184, 20);
-            this.SecondTextView.TabIndex = 4;
-            // 
             // AddFormControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.SecondTextView);
             this.Controls.Add(this.FirstTextView);
             this.Controls.Add(this.comboBox1);
             this.Name = "AddFormControl";
@@ -81,6 +72,5 @@
 
         private System.Windows.Forms.TextBox FirstTextView;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox SecondTextView;
     }
 }

@@ -13,48 +13,36 @@ namespace WinForm
 {
     public partial class AddFormControl : UserControl
     {
+        public bool isModify;
+
+        /// <summary>
+        /// Конструктор контроллера
+        /// </summary>
         public AddFormControl()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        ///     Переменная свойства "только для чтения"
+        /// Проверка на доступность полей контроллера
         /// </summary>
-        public bool _readOnly;
-
-
-        public void IsReadOnly(bool _readOnly)
+        public void IsEnable(bool _readOnly)
         {
             if (_readOnly)
             {
-                FirstTextView.ReadOnly = true;
                 FirstTextView.Enabled = false;
-                comboBox1.Visible = false;
-                //SecondTextView.Visible = true;
-                //SecondTextView.ReadOnly = true;
-                //SecondTextView.Text = "";
+                comboBox1.Enabled = false;
             }
             else
             {
-                FirstTextView.ReadOnly = false;
-                comboBox1.Visible = true;
-                //SecondTextView.Visible = false;
+                FirstTextView.Enabled = true;
+                comboBox1.Enabled = true;
             }
         }
 
-        public void IsReadOnly(IElements element)
-        {
-                FirstTextView.ReadOnly = true;
-                FirstTextView.Enabled = false;
-                comboBox1.Visible = false;
-                FirstTextView.Text = element.Parametrs.ToString();
-                SecondTextView.Visible = true;
-                SecondTextView.ReadOnly = true;
-                SecondTextView.Enabled = false;
-                SecondTextView.Text = element.ToString();
-        }
-
+        /// <summary>
+        /// Хранение текущего типа элемента в combobox
+        /// </summary>
         private int _currentType;
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
@@ -111,6 +99,9 @@ namespace WinForm
             }
         }
 
+        /// <summary>
+        ///  Метод, выводящий подсказки по заполнению textbox в зависимости от типа в combobox
+        /// </summary>
         private void Setup()
         {
             switch (_currentType)
@@ -140,17 +131,16 @@ namespace WinForm
 
         private void FirstTextView_Click(object sender, EventArgs e)
         {
-            ((TextBox)sender).Text = "";
+            if (isModify = false)
+            {
+                ((TextBox)sender).Text = ""; //meh
+
+            }
         }
 
         private void FirstTextView_Leave(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text == "") Setup();
-        }
-
-        private void AddFormControl_Load(object sender, EventArgs e)
-        {
-            IsReadOnly(_readOnly);
         }
     }
 }
