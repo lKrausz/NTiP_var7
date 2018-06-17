@@ -12,7 +12,8 @@ namespace UnitTests.Model
     [TestFixture]
     internal class CapacitorTest
     {
-        [Test]
+        //TODO: надо отдельно затестировать конструктор, свойство метод класса
+        [Test] //TODO: при использовании TestCase атрибут Test уже не нужен
         [TestCase(120, 12.3, TestName = "Тестирование при корректных данных w = 120, c = 12.3")]
         [TestCase(120, -12.3, ExpectedException = typeof(NegativeValueException), TestName = "Тестирование сопротивления при ошибочном с = -120.")]
         [TestCase(120, 0, ExpectedException = typeof(NegativeValueException), TestName = "Тестирование сопротивления при ошибочном c = 0.")]

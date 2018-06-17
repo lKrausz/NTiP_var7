@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+//TODO: убрать лишние юзинги
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -12,6 +13,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Json;
 using NTiP_var7;
 
+
+//TODO: название пространства имен не совпадает с именем проекта
 namespace WinForm
 {
     public partial class MainForm : Form
@@ -51,6 +54,7 @@ namespace WinForm
         private void Add_Click(object sender, EventArgs e)
         {
             addFormControl1.isModify = true;
+            //TODO: rsdn
             AddForm NewForm = new AddForm();
             if (NewForm.ShowDialog() == DialogResult.OK)
             {
@@ -66,7 +70,7 @@ namespace WinForm
         private void CalculateButton_Click(object sender, EventArgs e)
         {
             _w = Convert.ToUInt32(WValueTextBox.Text);
-            int n = 0;
+            int n = 0; //TODO: если нужен индексатор, тогда надо использовать for а не foreach
             foreach (IElements element in _bindingSource)
             {
                 dataGridView1.Rows[n].Cells["ResistanceColumn"].Value = element.GetImpedance(_w);
@@ -88,23 +92,29 @@ namespace WinForm
             }
         }
 
+        //TODO: поля в начале класса
         /// <summary>
         /// Хранение текущего критерия поиска
         /// </summary>
         private int _currentType;
 
+        //TODO: не то событие - надо SelectedIndexChanged
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            //TODO: зачем преобразование
             _currentType = ((ComboBox)sender).SelectedIndex;
         }
 
+        //TODO: поля в начале класса
         /// <summary>
         /// Выбранный в критериях поиска тип элемента
         /// </summary>
         private ElementsType elementType;
 
+        //TODO: переименовать комбобокс
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            //TODO: зачем преобразование?
             if (((ComboBox)sender).SelectedIndex == 0)
                 elementType =  ElementsType.Inductor;
             if (((ComboBox)sender).SelectedIndex == 1)
@@ -113,6 +123,7 @@ namespace WinForm
                 elementType = ElementsType.Capacitor;
         }
 
+        //TODO: поля в начале класса
         /// <summary>
         /// Список для элементов, которых подходят по критериям поиска
         /// </summary>
@@ -138,8 +149,8 @@ namespace WinForm
                     dataGridView1.DataSource = null;
                     _bindingSource.DataSource = _searchResult;
                     dataGridView1.DataSource = _bindingSource;
-                    int n = 0;
-                    foreach (IElements element in _searchResult)
+                    int n = 0; //TODO: если нужен индексатор, тогда надо использовать for а не foreach
+                        foreach (IElements element in _searchResult)
                     {
                         dataGridView1.Rows[n].Cells[0].Value = element.ToString();
                         n++;
@@ -158,7 +169,7 @@ namespace WinForm
             dataGridView1.DataSource = null;
             _bindingSource.DataSource = _elements;
             dataGridView1.DataSource = _bindingSource;
-            int n = 0;
+            int n = 0; //TODO: если нужен индексатор, тогда надо использовать for а не foreach
             foreach (IElements element in _elements)
             {
                 dataGridView1.Rows[n].Cells[0].Value = element.ToString();
@@ -212,6 +223,7 @@ namespace WinForm
             addFormControl1.IsEnable(true);
             int index = dataGridView1.CurrentCell.RowIndex;
             addFormControl1.isModify = true;
+            //TODO: rsdn
             AddForm NewForm = new AddForm(_elements[index]);
             if (NewForm.ShowDialog() == DialogResult.OK)
             {

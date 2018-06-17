@@ -8,11 +8,16 @@ using System.Threading.Tasks;
 
 namespace WinForm
 {
+    //TODO: у класса надо ставить модификатор static, иначе можно будет создавать его экземпляры
     /// <summary>
     /// Класс, реализующий сохранение в файл и загрузку данных из файла
     /// </summary>
     class Serializer
     {
+        //TODO: убрать слово Binary из названия - название не должно раскрывать особенности реализации
+        //TODO: заменить BinaryFormatter на Newtonsoft JSON.NET - стороннюю библиотеку. Атрибуты сериализации из бизнес-логики потом удалить
+        //TODO: Зачем ref?
+        //TODO: Зачем шаблонный метод?
         public static void SerializeBinary<T>(string fileName, ref T container)
         {
             var formatter = new BinaryFormatter();
@@ -21,6 +26,10 @@ namespace WinForm
             serializeFileStream.Close();
         }
 
+        //TODO: убрать слово Binary из названия - название не должно раскрывать особенности реализации
+        //TODO: заменить BinaryFormatter на Newtonsoft JSON.NET - стороннюю библиотеку. Атрибуты сериализации из бизнес-логики потом удалить
+        //TODO: Зачем ref?
+        //TODO: Зачем шаблонный метод?
         public static void DeserializeBinary<T>(string fileName, ref T container)
         {
             var formatter = new BinaryFormatter();

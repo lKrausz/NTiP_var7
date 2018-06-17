@@ -4,6 +4,7 @@ using NTiP_var7;
 
 namespace WinForm
 {
+    //TODO: переименовать - не отражает назначение формы
     public partial class AddForm : Form
     {
         /// <summary>
