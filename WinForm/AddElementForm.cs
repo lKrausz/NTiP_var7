@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
-using NTiP_var7;
+using ImpedanceModel;
 
-namespace WinForm
+namespace ImpedanceView
 {
-    //TODO: переименовать - не отражает назначение формы
-    public partial class AddForm : Form
+    public partial class AddElementForm : Form
+
     {
         /// <summary>
         /// Конструктор формы для добавления элемента
         /// </summary>
-        public AddForm()
+        public AddElementForm()
         {
             InitializeComponent();
         }
@@ -18,13 +18,14 @@ namespace WinForm
         /// <summary>
         /// Конструктор формы для редактирования элемента
         /// </summary>
-        public AddForm(IElements element)
+        public AddElementForm(IElement element, bool isModify)
         {
             InitializeComponent();
+            addFormControl1.ModifyChecker = isModify;
             NewElement = element;
         }
 
-        public IElements NewElement {
+        public IElement NewElement {
             get => addFormControl1.Element;
             set => addFormControl1.Element = value;
         }

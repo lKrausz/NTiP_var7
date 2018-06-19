@@ -3,13 +3,13 @@ using System.Numerics;
 using System.Runtime.Serialization;
 
 
-namespace NTiP_var7
+namespace ImpedanceModel
 {
     /// <summary>
     /// Элемент цепи: Конденсатор
     /// </summary>
     [Serializable]
-    public class Capacitor : IElements
+    public class Capacitor : IElement
     {
         [DataMember]
         private double _c;
@@ -17,13 +17,13 @@ namespace NTiP_var7
         /// <summary>
         /// Свойство для работы с параметрами
         /// </summary>
-        public double Parametrs
+        public double Parameter
         {
             get => _c;
             set
             {
-                CheckCorrectValue.IsDouble(value);
-                CheckCorrectValue.IsLessThenNull(value);
+                ValidationTools.IsDouble(value);
+                ValidationTools.IsLessThenNull(value);
                 _c = value;
             }
         }
@@ -33,7 +33,7 @@ namespace NTiP_var7
         /// </summary>
         public Capacitor(double cValue)
         {
-            Parametrs = cValue;
+            Parameter = cValue;
         }
 
         /// <summary>

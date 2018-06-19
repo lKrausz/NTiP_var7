@@ -1,42 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading.Tasks;
+using ImpedanceModel;
 
-namespace WinForm
+
+namespace ImpedanceView
 {
-    //TODO: у класса надо ставить модификатор static, иначе можно будет создавать его экземпляры
     /// <summary>
     /// Класс, реализующий сохранение в файл и загрузку данных из файла
     /// </summary>
-    class Serializer
+    static class Serializer
     {
-        //TODO: убрать слово Binary из названия - название не должно раскрывать особенности реализации
-        //TODO: заменить BinaryFormatter на Newtonsoft JSON.NET - стороннюю библиотеку. Атрибуты сериализации из бизнес-логики потом удалить
-        //TODO: Зачем ref?
-        //TODO: Зачем шаблонный метод?
-        public static void SerializeBinary<T>(string fileName, ref T container)
+        //public static void SerializeBinary<T>(string fileName, ref T container)
+        //{
+        //    var formatter = new BinaryFormatter();
+        //    var serializeFileStream = new FileStream(fileName, FileMode.OpenOrCreate);
+        //    formatter.Serialize(serializeFileStream, container);
+        //    serializeFileStream.Close();
+        //}
+
+        //public static void DeserializeBinary<T>(string fileName, ref T container)
+        //{
+        //    var formatter = new BinaryFormatter();
+        //    var deserializeFile = new FileStream(fileName, FileMode.OpenOrCreate);
+        //    if (deserializeFile.Length > 0)
+        //        container = (T)formatter.Deserialize(deserializeFile);
+        //    deserializeFile.Close();
+        //}
+
+        // Create a User object and serialize it to a JSON stream.  
+        public static string WriteFromObject(string fileName, List<IElement> elements)
         {
-            var formatter = new BinaryFormatter();
-            var serializeFileStream = new FileStream(fileName, FileMode.OpenOrCreate);
-            formatter.Serialize(serializeFileStream, container);
-            serializeFileStream.Close();
+            MemoryStream ms = new MemoryStream();
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(IElement));
+            ser.WriteObject(ms, elements);
+            byte[] json = ms.ToArray();
+            ms.Close();
+            return Encoding.UTF8.GetString(json, 0, json.Length);
         }
 
-        //TODO: убрать слово Binary из названия - название не должно раскрывать особенности реализации
-        //TODO: заменить BinaryFormatter на Newtonsoft JSON.NET - стороннюю библиотеку. Атрибуты сериализации из бизнес-логики потом удалить
-        //TODO: Зачем ref?
-        //TODO: Зачем шаблонный метод?
-        public static void DeserializeBinary<T>(string fileName, ref T container)
+        // Deserialize a JSON stream to a User object.  
+        public static List<IElement> ReadToObject(string json)
         {
-            var formatter = new BinaryFormatter();
-            var deserializeFile = new FileStream(fileName, FileMode.OpenOrCreate);
-            if (deserializeFile.Length > 0)
-                container = (T)formatter.Deserialize(deserializeFile);
-            deserializeFile.Close();
+            List<IElement> deserializedUser = new List<IElement>();
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(deserializedUser.GetType());
+            deserializedUser = ser.ReadObject(ms) as List<IElement>;
+            ms.Close();
+            return deserializedUser;
         }
     }
 }

@@ -3,13 +3,13 @@ using System.Numerics;
 using System.Runtime.Serialization;
 
 
-namespace NTiP_var7
+namespace ImpedanceModel
 {
     /// <summary>
     /// Элемент цепи: Катушка индуктивности
     /// </summary>
     [Serializable]
-    public class Inductor : IElements
+    public class Inductor : IElement
     {
         [DataMember]
         private double _l;
@@ -17,13 +17,13 @@ namespace NTiP_var7
         /// <summary>
         /// Свойство для работы с параметрами
         /// </summary>
-        public double Parametrs
+        public double Parameter
         {
             get => _l;
             set
             {
-                CheckCorrectValue.IsDouble(value);
-                CheckCorrectValue.IsLessThenNull(value);
+                ValidationTools.IsDouble(value);
+                ValidationTools.IsLessThenNull(value);
                 _l = value;
             }
         }
@@ -33,7 +33,7 @@ namespace NTiP_var7
         /// </summary>
         public Inductor(double lValue)
         {
-            Parametrs = lValue;
+            Parameter = lValue;
         }
 
         /// <summary>

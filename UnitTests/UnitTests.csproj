@@ -48,7 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\CapacitorTest.cs" />
-    <Compile Include="Model\IndustorTest.cs" />
+    <Compile Include="Model\ValidationToolsTest.cs" />
+    <Compile Include="Model\InductorTest.cs" />
     <Compile Include="Model\ResistorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,9 +57,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NTiP_var7\NTiP_var7.csproj">
+    <ProjectReference Include="..\NTiP_var7\ImpedanceModel.csproj">
       <Project>{B480332C-CEFE-4556-A631-0E43E70B617F}</Project>
-      <Name>NTiP_var7</Name>
+      <Name>ImpedanceModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

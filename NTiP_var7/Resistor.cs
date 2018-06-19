@@ -3,13 +3,13 @@ using System.Numerics;
 using System.Runtime.Serialization;
 
 
-namespace NTiP_var7
+namespace ImpedanceModel
 {
     /// <summary>
     /// Элемент цепи: Резистор
     /// </summary>
     [Serializable]
-    public class Resistor : IElements
+    public class Resistor : IElement
     {
 
         [DataMember]
@@ -18,13 +18,13 @@ namespace NTiP_var7
         /// <summary>
         /// Свойство для работы с параметрами
         /// </summary>
-        public double Parametrs
+        public double Parameter
         {
             get => _r;
             set
             {
-                CheckCorrectValue.IsDouble(value);
-                CheckCorrectValue.IsLessThenNull(value);
+                ValidationTools.IsDouble(value);
+                ValidationTools.IsLessThenNull(value);
                 _r = value;
             }
 
@@ -35,7 +35,7 @@ namespace NTiP_var7
         /// </summary>
         public Resistor(double RValue)
         {
-            Parametrs = RValue;
+            Parameter = RValue;
         }
 
         /// <summary>

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTiP_var7", "NTiP_var7\NTiP_var7.csproj", "{B480332C-CEFE-4556-A631-0E43E70B617F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpedanceModel", "NTiP_var7\ImpedanceModel.csproj", "{B480332C-CEFE-4556-A631-0E43E70B617F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "WinForm\View.csproj", "{CE5C0B37-ED24-4426-A1B8-3F461ECDFD90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpedanceView", "WinForm\ImpedanceView.csproj", "{CE5C0B37-ED24-4426-A1B8-3F461ECDFD90}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}"
 EndProject

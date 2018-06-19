@@ -49,10 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Capacitor.cs" />
-    <Compile Include="CheckCorrectValue.cs" />
+    <Compile Include="ValidationTools.cs" />
     <Compile Include="ElementsType.cs" />
     <Compile Include="Inductor.cs" />
-    <Compile Include="IElements.cs" />
+    <Compile Include="IElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resistor.cs" />
     <Compile Include="NegativeValueException.cs" />

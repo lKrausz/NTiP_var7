@@ -1,21 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-//TODO: убрать лишние юзинги
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization.Json;
-using NTiP_var7;
+using ImpedanceModel;
 
-
-//TODO: название пространства имен не совпадает с именем проекта
-namespace WinForm
+namespace ImpedanceView
 {
     public partial class MainForm : Form
     {
@@ -25,14 +14,29 @@ namespace WinForm
         private uint _w;
 
         /// <summary>
+        /// Хранение текущего критерия поиска
+        /// </summary>
+        private int _currentType;
+
+        /// <summary>
         /// Список пассивных элементов
         /// </summary>
-        private List<IElements> _elements = new List<IElements>();
+        private List<IElement> _elements = new List<IElement>();
 
         /// <summary>
         ///  Связующий _elements и gridview список
         /// </summary>
         private BindingSource _bindingSource = new BindingSource();
+
+        /// <summary>
+        /// Список для элементов, которых подходят по критериям поиска
+        /// </summary>
+        private List<IElement> _searchResult = new List<IElement>();
+
+        /// <summary>
+        /// Выбранный в критериях поиска тип элемента
+        /// </summary>
+        private ElementsType elementType;
 
         /// <summary>
         /// Конструктор формы
@@ -45,7 +49,7 @@ namespace WinForm
             dataGridView1.DataSource = _bindingSource;
             dataGridView1.MultiSelect = true;
             dataGridView1.Columns.Add("ResistanceColumn", "Сопротивление");
-            addFormControl1.IsEnable(true);
+            addFormControl1.EnabledChecker = false;
         }
 
         /// <summary>
@@ -53,9 +57,9 @@ namespace WinForm
         /// </summary>
         private void Add_Click(object sender, EventArgs e)
         {
-            addFormControl1.isModify = true;
+            addFormControl1.ModifyChecker = false;
             //TODO: rsdn
-            AddForm NewForm = new AddForm();
+            AddElementForm NewForm = new AddElementForm();
             if (NewForm.ShowDialog() == DialogResult.OK)
             {
                 var element = NewForm.NewElement;
@@ -70,11 +74,9 @@ namespace WinForm
         private void CalculateButton_Click(object sender, EventArgs e)
         {
             _w = Convert.ToUInt32(WValueTextBox.Text);
-            int n = 0; //TODO: если нужен индексатор, тогда надо использовать for а не foreach
-            foreach (IElements element in _bindingSource)
+            for (int n = 0; n <= _bindingSource.Count - 1; n++)
             {
-                dataGridView1.Rows[n].Cells["ResistanceColumn"].Value = element.GetImpedance(_w);
-                n++;
+                dataGridView1.Rows[n].Cells["ResistanceColumn"].Value = _elements[n].GetImpedance(_w);
             }
         }
 
@@ -91,43 +93,24 @@ namespace WinForm
                 }
             }
         }
-
-        //TODO: поля в начале класса
-        /// <summary>
-        /// Хранение текущего критерия поиска
-        /// </summary>
-        private int _currentType;
-
-        //TODO: не то событие - надо SelectedIndexChanged
-        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        
+        private void searchTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TODO: зачем преобразование
             _currentType = ((ComboBox)sender).SelectedIndex;
         }
 
-        //TODO: поля в начале класса
-        /// <summary>
-        /// Выбранный в критериях поиска тип элемента
-        /// </summary>
-        private ElementsType elementType;
 
-        //TODO: переименовать комбобокс
-        private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
+        private void elementTypeComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             //TODO: зачем преобразование?
             if (((ComboBox)sender).SelectedIndex == 0)
-                elementType =  ElementsType.Inductor;
+                elementType = ElementsType.Inductor;
             if (((ComboBox)sender).SelectedIndex == 1)
                 elementType = ElementsType.Resistor;
             if (((ComboBox)sender).SelectedIndex == 2)
                 elementType = ElementsType.Capacitor;
         }
-
-        //TODO: поля в начале класса
-        /// <summary>
-        /// Список для элементов, которых подходят по критериям поиска
-        /// </summary>
-        private List<IElements> _searchResult = new List<IElements>();
 
         /// <summary>
         /// Кнопка поиска
@@ -138,7 +121,7 @@ namespace WinForm
             {
                 case 0:
                 {
-                    foreach (IElements element in _elements.ToArray())
+                    foreach (IElement element in _elements.ToArray())
                     {
                         if (element.ToString() == elementType.ToString())
                         {
@@ -149,11 +132,10 @@ namespace WinForm
                     dataGridView1.DataSource = null;
                     _bindingSource.DataSource = _searchResult;
                     dataGridView1.DataSource = _bindingSource;
-                    int n = 0; //TODO: если нужен индексатор, тогда надо использовать for а не foreach
-                        foreach (IElements element in _searchResult)
+
+                    for (int n = 0; n < _elements.Count; n++)
                     {
-                        dataGridView1.Rows[n].Cells[0].Value = element.ToString();
-                        n++;
+                        dataGridView1.Rows[n].Cells[0].Value = _elements[n].ToString();
                     }
                     break;
                 }
@@ -169,12 +151,12 @@ namespace WinForm
             dataGridView1.DataSource = null;
             _bindingSource.DataSource = _elements;
             dataGridView1.DataSource = _bindingSource;
-            int n = 0; //TODO: если нужен индексатор, тогда надо использовать for а не foreach
-            foreach (IElements element in _elements)
+
+            for (int n = 0; n < _elements.Count; n++)
             {
-                dataGridView1.Rows[n].Cells[0].Value = element.ToString();
-                n++;
+                dataGridView1.Rows[n].Cells[0].Value = _elements[n].ToString();
             }
+
         }
 
         /// <summary>
@@ -187,7 +169,7 @@ namespace WinForm
             {
                 var elementType = random.Next(0, 3);
                 double value = random.NextDouble() * random.Next(1, 15);
-                IElements element;
+                IElement element;
                 switch (elementType)
                 {
                     case 0:
@@ -214,47 +196,49 @@ namespace WinForm
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            addFormControl1.IsEnable(true);
+            addFormControl1.EnabledChecker = false;
             addFormControl1.Element = _elements[dataGridView1.CurrentCell.RowIndex];
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            addFormControl1.IsEnable(true);
+            addFormControl1.EnabledChecker = true;
             int index = dataGridView1.CurrentCell.RowIndex;
-            addFormControl1.isModify = true;
             //TODO: rsdn
-            AddForm NewForm = new AddForm(_elements[index]);
-            if (NewForm.ShowDialog() == DialogResult.OK)
+            //done?
+            AddElementForm ModifyForm = new AddElementForm(_elements[index], true);
+            if (ModifyForm.ShowDialog() == DialogResult.OK)
             {
-                var element = NewForm.NewElement;
+                var element = ModifyForm.NewElement;
                 _bindingSource.Remove(_elements[index]);
                 _bindingSource.Insert(index, element);
                 dataGridView1.Rows[index].Cells[0].Value = element.ToString();
             }     
         }
 
-        private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            saveFileDialog1.ShowDialog();
-        }
+        //private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    saveFileDialog1.ShowDialog();
+        //}
 
-        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
-        {
-            Serializer.SerializeBinary(saveFileDialog1.FileName, ref _elements);
-        }
+        //private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
+        //{
+        //    //Serializer.SerializeBinary(saveFileDialog1.FileName, ref _elements);
+        //    Serializer.WriteFromObject(saveFileDialog1.FileName, _elements);
+        //}
 
-        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.ShowDialog();
-        }
+        //private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    openFileDialog1.ShowDialog();
+        //}
 
-        private void openFileDialog_FileOk(object sender, CancelEventArgs e)
-        {
+        //private void openFileDialog_FileOk(object sender, CancelEventArgs e)
+        //{
            
-            Serializer.DeserializeBinary(openFileDialog1.FileName, ref _elements);
-            _bindingSource.DataSource = null;
-            _bindingSource.DataSource = _elements;
-        }
+        //    //Serializer.DeserializeBinary(openFileDialog1.FileName, ref _elements);
+        //    Serializer.ReadToObject(openFileDialog1.FileName, _elements);
+        //    _bindingSource.DataSource = null;
+        //    _bindingSource.DataSource = _elements;
+        //}
     }
 }

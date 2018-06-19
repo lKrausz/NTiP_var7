@@ -1,7 +1,9 @@
-﻿
-namespace NTiP_var7//TODO: убрать пустую строку выше
+﻿namespace ImpedanceModel
 {
-    //TODO: комментарий
+    //TODO: комментарий//done
+    /// <summary>
+    /// Тип пассивного элемента
+    /// </summary>
     public enum ElementsType
     {
         Inductor = 0,

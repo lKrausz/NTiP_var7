@@ -1,6 +1,6 @@
-﻿namespace WinForm
+﻿namespace ImpedanceView
 {
-    partial class AddForm
+    partial class AddElementForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.Cancel = new System.Windows.Forms.Button();
             this.OK = new System.Windows.Forms.Button();
-            this.addFormControl1 = new WinForm.AddFormControl();
+            this.addFormControl1 = new ImpedanceView.PassiveElementControl();
             this.SuspendLayout();
             // 
             // Cancel
@@ -60,7 +60,7 @@
             this.addFormControl1.Size = new System.Drawing.Size(190, 66);
             this.addFormControl1.TabIndex = 6;
             // 
-            // AddForm
+            // AddElementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -69,7 +69,9 @@
             this.Controls.Add(this.OK);
             this.Controls.Add(this.Cancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "AddForm";
+            this.MaximumSize = new System.Drawing.Size(227, 165);
+            this.MinimumSize = new System.Drawing.Size(227, 165);
+            this.Name = "AddElementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Modify window";
             this.ResumeLayout(false);
@@ -79,6 +81,6 @@
         #endregion
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.Button OK;
-        private AddFormControl addFormControl1;
+        private PassiveElementControl addFormControl1;
     }
 }

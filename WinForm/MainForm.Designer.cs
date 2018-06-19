@@ -1,4 +1,4 @@
-﻿namespace WinForm
+﻿namespace ImpedanceView
 {
     partial class MainForm
     {
@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.addFormControl1 = new WinForm.AddFormControl();
+            this.addFormControl1 = new ImpedanceView.PassiveElementControl();
             this.RandomButton = new System.Windows.Forms.Button();
             this.Search = new System.Windows.Forms.GroupBox();
             this.ReturnButton = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.elementTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.searchTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
@@ -51,6 +51,7 @@
             this.закрытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.Search.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -77,6 +78,7 @@
             // 
             // addFormControl1
             // 
+            this.addFormControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addFormControl1.Location = new System.Drawing.Point(387, 202);
             this.addFormControl1.Name = "addFormControl1";
             this.addFormControl1.Size = new System.Drawing.Size(190, 66);
@@ -84,6 +86,7 @@
             // 
             // RandomButton
             // 
+            this.RandomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.RandomButton.Location = new System.Drawing.Point(390, 312);
             this.RandomButton.Name = "RandomButton";
             this.RandomButton.Size = new System.Drawing.Size(185, 27);
@@ -96,8 +99,8 @@
             // 
             this.Search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Search.Controls.Add(this.ReturnButton);
-            this.Search.Controls.Add(this.comboBox2);
-            this.Search.Controls.Add(this.comboBox1);
+            this.Search.Controls.Add(this.elementTypeComboBox);
+            this.Search.Controls.Add(this.searchTypeComboBox);
             this.Search.Controls.Add(this.label5);
             this.Search.Controls.Add(this.label6);
             this.Search.Controls.Add(this.SearchButton);
@@ -117,29 +120,29 @@
             this.ReturnButton.UseVisualStyleBackColor = true;
             this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
             // 
-            // comboBox2
+            // elementTypeComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.elementTypeComboBox.FormattingEnabled = true;
+            this.elementTypeComboBox.Items.AddRange(new object[] {
             "Катушка индуктивности",
             "Резистор",
             "Конденсатор"});
-            this.comboBox2.Location = new System.Drawing.Point(7, 94);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(196, 21);
-            this.comboBox2.TabIndex = 14;
-            this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox2_SelectionChangeCommitted);
+            this.elementTypeComboBox.Location = new System.Drawing.Point(7, 94);
+            this.elementTypeComboBox.Name = "elementTypeComboBox";
+            this.elementTypeComboBox.Size = new System.Drawing.Size(196, 21);
+            this.elementTypeComboBox.TabIndex = 14;
+            this.elementTypeComboBox.SelectionChangeCommitted += new System.EventHandler(this.elementTypeComboBox_SelectionChangeCommitted);
             // 
-            // comboBox1
+            // searchTypeComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.searchTypeComboBox.FormattingEnabled = true;
+            this.searchTypeComboBox.Items.AddRange(new object[] {
             "Тип элемента"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 28);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(197, 21);
-            this.comboBox1.TabIndex = 13;
-            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
+            this.searchTypeComboBox.Location = new System.Drawing.Point(6, 28);
+            this.searchTypeComboBox.Name = "searchTypeComboBox";
+            this.searchTypeComboBox.Size = new System.Drawing.Size(197, 21);
+            this.searchTypeComboBox.TabIndex = 13;
+            this.searchTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.searchTypeComboBox_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -171,6 +174,7 @@
             // 
             // Remove_button
             // 
+            this.Remove_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Remove_button.Location = new System.Drawing.Point(489, 274);
             this.Remove_button.Name = "Remove_button";
             this.Remove_button.Size = new System.Drawing.Size(86, 27);
@@ -210,6 +214,7 @@
             // 
             // Add
             // 
+            this.Add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Add.Location = new System.Drawing.Point(390, 274);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(86, 27);
@@ -222,7 +227,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(6, 19);
@@ -260,14 +266,14 @@
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
             this.открытьToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
-            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
+            //this.открытьToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // сохранитьКакToolStripMenuItem
             // 
             this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
             this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
-            this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripMenuItem_Click);
+            //this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripMenuItem_Click);
             // 
             // закрытьToolStripMenuItem
             // 
@@ -280,12 +286,22 @@
             // 
             this.saveFileDialog1.DefaultExt = "res";
             this.saveFileDialog1.Filter = "res Файлы|*.res";
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
+            //this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
+            //this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Тип элемента"});
+            this.comboBox1.Location = new System.Drawing.Point(6, 28);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(197, 21);
+            this.comboBox1.TabIndex = 13;
             // 
             // MainForm
             // 
@@ -322,8 +338,8 @@
         private System.Windows.Forms.Button Remove_button;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.GroupBox Search;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox elementTypeComboBox;
+        private System.Windows.Forms.ComboBox searchTypeComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ReturnButton;
@@ -333,9 +349,10 @@
         private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem закрытьToolStripMenuItem;
         private System.Windows.Forms.Button RandomButton;
-        private AddFormControl addFormControl1;
+        private PassiveElementControl addFormControl1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

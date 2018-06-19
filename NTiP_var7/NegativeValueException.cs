@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NTiP_var7
+namespace ImpedanceModel
 {
     public class NegativeValueException : Exception
     {

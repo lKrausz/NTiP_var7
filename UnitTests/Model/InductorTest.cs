@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
-using NTiP_var7;
+using ImpedanceModel;
 
 namespace UnitTests.Model
 {
-    //TODO: переименовать класс - грамматическая ошибка
     [TestFixture]
-    class IndustorTest
+    class InductorTest
     {
         //TODO: надо отдельно затестировать конструктор, свойство метод класса
-        [Test] //TODO: при использовании TestCase атрибут Test уже не нужен
         [TestCase(120, 12.3, TestName = "Тестирование при корректных данных w = 120, l = 12.3")]
         [TestCase(120, -12.3, ExpectedException = typeof(NegativeValueException), TestName = "Тестирование сопротивления при ошибочном l = -120.")]
         [TestCase(120, 0, ExpectedException = typeof(NegativeValueException), TestName = "Тестирование сопротивления при ошибочном l = 0.")]
