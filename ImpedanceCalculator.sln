@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpedanceModel", "NTiP_var7\ImpedanceModel.csproj", "{B480332C-CEFE-4556-A631-0E43E70B617F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpedanceView", "WinForm\ImpedanceView.csproj", "{CE5C0B37-ED24-4426-A1B8-3F461ECDFD90}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpedanceModel", "ImpedanceModel\ImpedanceModel.csproj", "{B480332C-CEFE-4556-A631-0E43E70B617F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpedanceView", "ImpedanceView\ImpedanceView.csproj", "{CE5C0B37-ED24-4426-A1B8-3F461ECDFD90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +15,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B480332C-CEFE-4556-A631-0E43E70B617F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B480332C-CEFE-4556-A631-0E43E70B617F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B480332C-CEFE-4556-A631-0E43E70B617F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -23,10 +27,6 @@ Global
 		{CE5C0B37-ED24-4426-A1B8-3F461ECDFD90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE5C0B37-ED24-4426-A1B8-3F461ECDFD90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE5C0B37-ED24-4426-A1B8-3F461ECDFD90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D71F207-0C53-4D0E-88C2-91A3DCA4EECF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

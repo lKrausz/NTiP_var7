@@ -216,29 +216,27 @@ namespace ImpedanceView
             }     
         }
 
-        //private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    saveFileDialog1.ShowDialog();
-        //}
+        private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+        }
 
-        //private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
-        //{
-        //    //Serializer.SerializeBinary(saveFileDialog1.FileName, ref _elements);
-        //    Serializer.WriteFromObject(saveFileDialog1.FileName, _elements);
-        //}
+        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            Serializer.Save(saveFileDialog1.FileName, _elements);
+        }
 
-        //private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    openFileDialog1.ShowDialog();
-        //}
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+        }
 
-        //private void openFileDialog_FileOk(object sender, CancelEventArgs e)
-        //{
-           
-        //    //Serializer.DeserializeBinary(openFileDialog1.FileName, ref _elements);
-        //    Serializer.ReadToObject(openFileDialog1.FileName, _elements);
-        //    _bindingSource.DataSource = null;
-        //    _bindingSource.DataSource = _elements;
-        //}
+        private void openFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            _elements = Serializer.Open(openFileDialog1.FileName);
+            _bindingSource.DataSource = null;
+            _bindingSource.DataSource = _elements;
+        }
+
     }
 }

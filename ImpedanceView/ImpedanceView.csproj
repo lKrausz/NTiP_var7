@@ -113,7 +113,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NTiP_var7\ImpedanceModel.csproj">
+    <ProjectReference Include="..\ImpedanceModel\ImpedanceModel.csproj">
       <Project>{B480332C-CEFE-4556-A631-0E43E70B617F}</Project>
       <Name>ImpedanceModel</Name>
     </ProjectReference>
