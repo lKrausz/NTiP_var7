@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace ImpedanceModel
 {
@@ -11,6 +12,7 @@ namespace ImpedanceModel
         public NegativeValueException(string message)
             : base(message)
         {
+            MessageBox.Show(message, "Error");
         }
 
         public NegativeValueException(string message, Exception inner)

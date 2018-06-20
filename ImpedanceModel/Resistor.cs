@@ -8,7 +8,7 @@ namespace ImpedanceModel
     /// <summary>
     /// Элемент цепи: Резистор
     /// </summary>
-    [Serializable]
+    [DataContract]
     public class Resistor : IElement
     {
 

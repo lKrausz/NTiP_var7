@@ -8,7 +8,7 @@ namespace ImpedanceModel
     /// <summary>
     /// Элемент цепи: Катушка индуктивности
     /// </summary>
-    [Serializable]
+    [DataContract]
     public class Inductor : IElement
     {
         [DataMember]

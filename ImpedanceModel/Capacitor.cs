@@ -8,7 +8,7 @@ namespace ImpedanceModel
     /// <summary>
     /// Элемент цепи: Конденсатор
     /// </summary>
-    [Serializable]
+    [DataContract]
     public class Capacitor : IElement
     {
         [DataMember]
