@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Windows.Forms;
 using ImpedanceModel;
 
@@ -133,11 +134,11 @@ namespace ImpedanceView
                     _bindingSource.DataSource = _searchResult;
                     dataGridView1.DataSource = _bindingSource;
 
-                    for (int n = 0; n < _elements.Count; n++)
-                    {
-                        dataGridView1.Rows[n].Cells[0].Value = _elements[n].ToString();
-                    }
-                    break;
+                        for (int n = 0; n < _searchResult.Count; n++)
+                        {
+                            dataGridView1.Rows[n].Cells[0].Value = _searchResult[n].ToString();
+                        }
+                        break;
                 }
             }
         }
@@ -151,6 +152,7 @@ namespace ImpedanceView
             dataGridView1.DataSource = null;
             _bindingSource.DataSource = _elements;
             dataGridView1.DataSource = _bindingSource;
+            _searchResult.Clear();
 
             for (int n = 0; n < _elements.Count; n++)
             {
@@ -236,6 +238,10 @@ namespace ImpedanceView
             _elements = Serializer.Open(openFileDialog1.FileName);
             _bindingSource.DataSource = null;
             _bindingSource.DataSource = _elements;
+            for (int n = 0; n < _elements.Count; n++)
+            {
+                dataGridView1.Rows[n].Cells[0].Value = _elements[n].ToString();
+            }
         }
 
     }

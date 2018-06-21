@@ -63,6 +63,7 @@
             this.Controls.Add(this.ElementTypeComboBox);
             this.Name = "PassiveElementControl";
             this.Size = new System.Drawing.Size(190, 66);
+            this.Load += new System.EventHandler(this.PassiveElementControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

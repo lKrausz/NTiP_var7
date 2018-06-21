@@ -140,5 +140,10 @@ namespace ImpedanceView
             if (FirstTextView.Text == String.Empty)
                 ConfigureTextBoxPlaceholder();
         }
+
+        private void PassiveElementControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

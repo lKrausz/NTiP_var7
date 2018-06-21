@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
 
-//TODO: переименовать проект, наимспейс и папку проекта правильно
 namespace ImpedanceModel
 {
     /// <summary>
